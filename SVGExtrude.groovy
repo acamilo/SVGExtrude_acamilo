@@ -7,7 +7,8 @@ File f = ScriptingEngine
 		"master",//branch
 		"airFoil.svg"// File from within the Git repo
 	)
+println "Extruding SVG "+f.getAbsolutePath()
 SVGLoad s = new SVGLoad(f.toURI())
-ArrayList<CSG>foil = s.extrude(10,0.01)
+def foil = s.extrude(10,0.01)
 
 return foil.collect{it.scale(10)}
