@@ -17,4 +17,9 @@ def outsideParts = s.extrudeLayer(10,"outsides")
 					.collect{it.difference(holeParts)}
 def boarderParts = s.extrudeLayer(5,"boarder")
 
-return [outsideParts,boarderParts]
+def allParts=[]
+allParts.addAll(boarderParts)
+allParts.addAll(outsideParts)
+
+
+return CSG.unionAll(allParts)
