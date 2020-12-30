@@ -11,15 +11,16 @@ println "Extruding SVG "+f.getAbsolutePath()
 
 SVGLoad s = new SVGLoad(f.toURI())
 println "Layers= "+s.getLayers()
+// A map of layers to polygons
+HashMap<String,List<Polygon>> polygonsByLayer = s.toPolygons()
+// extrude all layers to a map to 10mm thick
+HashMap<String,ArrayList<CSG>> csgByLayers = s.extrudeLayers(10)
+// extrude just one layer to 10mm
+def holeParts = s.extrudeLayerToCSG(10,"holes")
+// seperate holes and outsides using layers to differentiate
+def outsideParts = s.extrudeLayerToCSG(10,"outsides")
+					.difference(holeParts)
+// layers can be extruded at different depths					
+def boarderParts = s.extrudeLayerToCSG(5,"boarder")
 
-def holeParts = s.extrudeLayer(10,"holes")
-def outsideParts = s.extrudeLayer(10,"outsides")
-					.collect{it.difference(holeParts)}
-def boarderParts = s.extrudeLayer(5,"boarder")
-
-def allParts=[]
-allParts.addAll(boarderParts)
-allParts.addAll(outsideParts)
-
-
-return CSG.unionAll(allParts)
+return CSG.unionAll([boarderParts,outsideParts])
