@@ -1,5 +1,7 @@
 import eu.mihosoft.vrl.v3d.svg.*;
+import eu.mihosoft.vrl.v3d.CSG
 import eu.mihosoft.vrl.v3d.Extrude;
+import eu.mihosoft.vrl.v3d.Polygon
 
 File f = ScriptingEngine
 	.fileFromGit(
