@@ -1,4 +1,8 @@
 /.project
 /.classpath
 /cache/
+/*.class/.project
+/.classpath
+/.cproject
+/cache/
 /*.class
