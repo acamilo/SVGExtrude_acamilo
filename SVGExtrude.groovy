@@ -10,7 +10,6 @@ File f = ScriptingEngine
 		"drawing.svg"// File from within the Git repo
 	)
 println "Extruding SVG "+f.getAbsolutePath()
-
 SVGLoad s = new SVGLoad(f.toURI())
 println "Layers= "+s.getLayers()
 // A map of layers to polygons
